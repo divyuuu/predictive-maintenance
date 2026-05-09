@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+backend/model/isolation_forest.pkl
+backend/model/scaler.pkl
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Env
+.env

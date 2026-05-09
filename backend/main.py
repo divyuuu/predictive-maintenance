@@ -23,17 +23,26 @@ sys.path.insert(0, os.path.dirname(__file__))
 from model import MaintenancePredictor
 
 # ── Config ────────────────────────────────────────────────────────────────────
+# MQTT_BROKER   = os.getenv("MQTT_BROKER", "localhost")
+# MQTT_PORT     = int(os.getenv("MQTT_PORT", 1883))
 MQTT_BROKER   = os.getenv("MQTT_BROKER", "localhost")
 MQTT_PORT     = int(os.getenv("MQTT_PORT", 1883))
+FRONTEND_URL  = os.getenv("FRONTEND_URL", "*")
 MQTT_TOPIC    = "motor/sensor_data"
 HISTORY_LEN   = 120   # keep last 120 data points for charts
 
 # ── App Setup ─────────────────────────────────────────────────────────────────
 app = FastAPI(title="Predictive Maintenance API", version="1.0.0")
 
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[FRONTEND_URL, "*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
