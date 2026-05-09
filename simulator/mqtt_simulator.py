@@ -13,7 +13,7 @@ from datetime import datetime
 import paho.mqtt.client as mqtt
 
 # ── MQTT Config ──────────────────────────────────────────────────────────────
-BROKER_HOST = "localhost"
+BROKER_HOST = "broker.hivemq.com"
 BROKER_PORT = 1883
 TOPIC = "motor/sensor_data"
 PUBLISH_INTERVAL = 1.0  # seconds

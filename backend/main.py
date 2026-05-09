@@ -25,7 +25,7 @@ from model import MaintenancePredictor
 # ── Config ────────────────────────────────────────────────────────────────────
 # MQTT_BROKER   = os.getenv("MQTT_BROKER", "localhost")
 # MQTT_PORT     = int(os.getenv("MQTT_PORT", 1883))
-MQTT_BROKER   = os.getenv("MQTT_BROKER", "localhost")
+MQTT_BROKER = os.getenv("MQTT_BROKER", "broker.hivemq.com")
 MQTT_PORT     = int(os.getenv("MQTT_PORT", 1883))
 FRONTEND_URL  = os.getenv("FRONTEND_URL", "*")
 MQTT_TOPIC    = "motor/sensor_data"
