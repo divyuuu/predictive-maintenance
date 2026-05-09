@@ -161,6 +161,15 @@ async def startup():
     except Exception as e:
         print(f"[MQTT] Could not connect to broker: {e}")
 
+    import threading
+    import sys
+    import os
+    sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+    from simulator.mqtt_simulator import MotorState, publish_loop
+    sim_thread = threading.Thread(target=publish_loop, daemon=True)
+    sim_thread.start()
+    print("[Simulator] Started in background thread.")
+
     asyncio.create_task(process_messages())
     print("[API] Startup complete. Listening for MQTT messages...")
 
