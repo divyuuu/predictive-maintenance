@@ -150,8 +150,7 @@ def get_history():
 # ── Startup / Shutdown ────────────────────────────────────────────────────────
 @app.on_event("startup")
 async def startup():
-    # Start MQTT client in background thread
-    mqtt_client = mqtt.Client(client_id="backend_subscriber")
+    mqtt_client = mqtt.Client(client_id="backend_subscriber", clean_session=True)
     mqtt_client.on_connect = on_mqtt_connect
     mqtt_client.on_message = on_mqtt_message
 
@@ -161,12 +160,9 @@ async def startup():
         print("[MQTT] Client started.")
     except Exception as e:
         print(f"[MQTT] Could not connect to broker: {e}")
-        print("[MQTT] Will retry when broker becomes available...")
 
-    # Start async message processor
     asyncio.create_task(process_messages())
     print("[API] Startup complete. Listening for MQTT messages...")
-
 
 # ── Serve React frontend (after build) ───────────────────────────────────────
 # frontend_dist = os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")
